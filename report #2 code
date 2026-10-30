@@ -1,3 +1,4 @@
+// 첫번째 운명의 숫자 프로그램 실행
 #include <stdio.h>
 
 int main(void) {
@@ -49,6 +50,7 @@ int main(void) {
     return 0; 
 }
 
+// 두번째 블랙홀의 중력장 탈출
 #include <stdio.h>
 
 int main(void) 
@@ -102,6 +104,7 @@ int main(void)
 }
 
 
+// 세번째 특이한 자판기
 #include <stdio.h>
 
 #define RED_POTION 1000
