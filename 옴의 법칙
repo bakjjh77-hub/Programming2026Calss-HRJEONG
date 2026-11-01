@@ -1,0 +1,92 @@
+#include <stdio.h>
+
+int main(void) 
+{
+    int select;
+    double v, i, r, p;
+
+    // 프로그램 전체 반복 (0 입력 전까지)
+    while (1) {
+        printf("===== Ohm's Law Calculator =====\n");
+        printf("1. Voltage  2. Current  3. Resistance  0. Exit\n");
+        printf("Select: ");
+        scanf_s("%d", &select);
+
+        if (select == 0) {
+            printf("Exiting the program...\n");
+            break;
+        }
+
+        // 1. 전압 계산 (V = I * R)
+        if (select == 1) {
+            // 전류 및 저항 입력 (0 이하일 경우 재입력)
+            printf("Current (A): ");
+            scanf_s("%lf", &i);
+            while (i <= 0) {
+                printf("-> Value must be positive. Enter again: ");
+                scanf_s("%lf", &i);
+            }
+
+            printf("Resistance (ohm): ");
+            scanf_s("%lf", &r);
+            while (r <= 0) {
+                printf("-> Value must be positive. Enter again: ");
+                scanf_s("%lf", &r);
+            }
+
+            // 공식: V = I * R, P = V * I
+            v = i * r;
+            p = v * i;
+
+            printf("V = %.3lf V, I = %.3lf A, R = %.3lf ohm, P = %.3lf W\n\n", v, i, r, p);
+        }
+        // 2. 전류 계산 (I = V / R)
+        else if (select == 2) {
+            // 전압 및 저항 입력 (0 이하일 경우 재입력)
+            printf("Voltage (V): ");
+            scanf_s("%lf", &v);
+            while (v <= 0) {
+                printf("-> Value must be positive. Enter again: ");
+                scanf_s("%lf", &v);
+            }
+
+            printf("Resistance (ohm): ");
+            scanf_s("%lf", &r);
+            while (r <= 0) {
+                printf("-> Value must be positive. Enter again: ");
+                scanf_s("%lf", &r);
+            }
+
+            // 공식: I = V / R, P = V * I
+            i = v / r;
+            p = v * i;
+
+            printf("V = %.3lf V, I = %.3lf A, R = %.3lf ohm, P = %.3lf W\n\n", v, i, r, p);
+        }
+        // 3. 저항 계산 (R = V / I)
+        else if (select == 3) {
+            // 전압 및 전류 입력 (0 이하일 경우 재입력)
+            printf("Voltage (V): ");
+            scanf_s("%lf", &v);
+            while (v <= 0) {
+                printf("-> Value must be positive. Enter again: ");
+                scanf_s("%lf", &v);
+            }
+
+            printf("Current (A): ");
+            scanf_s("%lf", &i);
+            while (i <= 0) {
+                printf("-> Value must be positive. Enter again: ");
+                scanf_s("%lf", &i);
+            }
+
+            // 공식: R = V / I, P = V * I
+            r = v / i;
+            p = v * i;
+
+            printf("V = %.3lf V, I = %.3lf A, R = %.3lf ohm, P = %.3lf W\n\n", v, i, r, p);
+        }
+    }
+
+    return 0;
+}
