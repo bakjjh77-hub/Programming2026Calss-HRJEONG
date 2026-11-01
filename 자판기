@@ -1,0 +1,85 @@
+#include <stdio.h>
+
+int main(void) 
+{
+    int select;
+    int price = 0;
+    int inserted = 0;
+    int money = 0;
+    int change = 0;
+    int total_sales = 0;
+    int total_count = 0;
+
+    // 0(종료)을 누를 때까지 자판기 전체 무한 반복
+    while (1) {
+        printf("===== Drink Vending Machine =====\n");
+        printf("1. Coke(1200)  2. Cider(1100)  3. Coffee(800)  0. Exit\n");
+        printf("Select: ");
+        scanf_s("%d", &select);
+
+        // 0 선택 시 종료 및 매출 정보 출력
+        if (select == 0) {
+            printf("Today's Sales: %d drinks, Revenue: %d Won\n", total_count, total_sales);
+            break;
+        }
+
+        // 메뉴 번호에 따라 가격 설정 (메뉴에 없는 번호 입력 시 예외 처리)
+        if (select == 1) {
+            price = 1200;
+        } else if (select == 2) {
+            price = 1100;
+        } else if (select == 3) {
+            price = 800;
+        } else {
+            printf("Invalid selection\n\n");
+            continue; // 다시 메뉴 출력으로 이동
+        }
+
+        inserted = 0; // 누적 투입 금액 초기화
+
+        // 투입 금액이 음료 가격 이상이 될 때까지 계속 투입받음
+        while (inserted < price) {
+            printf("Insert (Current %d / Need %d): ", inserted, price);
+            scanf_s("%d", &money);
+
+            // 100원, 500원, 1000원 단위만 허용 (다른 금액은 무시)
+            if (money == 100 || money == 500 || money == 1000) {
+                inserted += money;
+            } else {
+                printf("-> %d Won cannot be used.\n", money);
+            }
+        }
+
+        // 음료 추출 및 거스름돈 계산
+        printf("Drink served! ");
+        change = inserted - price;
+        total_sales += price; // 매출 누적
+        total_count++;        // 판매 잔수 누적
+
+        // 거스름돈 출력 처리 (500원, 100원 동전 개수를 O 형태로 출력)
+        if (change == 0) {
+            printf("No Change\n\n");
+        } else {
+            printf("Change: %d Won\n", change);
+
+            int coin500 = change / 500;
+            int coin100 = (change % 500) / 100;
+
+            // 500원 동전 개수만큼 O 출력
+            printf("  500 Won: ");
+            for (int i = 0; i < coin500; i++) {
+                printf("O");
+            }
+            printf("\n");
+
+            // 100원 동전 개수만큼 O 출력
+            printf("  100 Won: ");
+            for (int i = 0; i < coin100; i++) {
+                printf("O");
+            }
+            printf("\n\n");
+        }
+    }
+
+    return 0;
+}
