@@ -1,0 +1,92 @@
+#include <stdio.h>
+
+int main(void) 
+{
+    int car_count;
+    int car_type, park_min;
+    int base_fee, discount_rate;
+    int final_fee;
+    int total_fee = 0;
+    int max_fee = -1;
+    int max_car_index = 0;
+
+    // 1. 정산할 차량 수 N(1~10) 입력 받기 (범위 벗어나면 재입력)
+    do {
+        printf("정산할 차량 수(1-10): ");
+        scanf_s("%d", &car_count);
+
+        if (car_count < 1 || car_count > 10) {
+            printf("-> 1-10 사이로 입력하세요.\n");
+        }
+    } while (car_count < 1 || car_count > 10);
+
+    // 2. 차량 수만큼 반복하며 정보 입력 및 요금 계산
+    for (int i = 1; i <= car_count; i++) {
+        printf("\n[%d번 차량]\n", i);
+
+        // 차종 입력
+        printf("차종(1:경차 2:일반 3:전기차): ");
+        scanf_s("%d", &car_type);
+
+        // 주차 시간(분) 입력 (음수면 재입력)
+        do {
+            printf("주차 시간(분): ");
+            scanf_s("%d", &park_min);
+
+            if (park_min < 0) {
+                printf("-> 0 이상으로 다시 입력: ");
+            }
+        } while (park_min < 0);
+
+        // 3. 기본 요금 계산
+        if (park_min <= 30) {
+            base_fee = 0; // 30분 이하 무료
+        }
+        else {
+            int extra_min = park_min - 30;
+            // 10분 미만은 올림 처리: (extra_min + 9) / 10
+            int units = (extra_min + 9) / 10;
+            base_fee = units * 500;
+
+            // 하루 최대 요금 20,000원 제한
+            if (base_fee > 20000) {
+                base_fee = 20000;
+            }
+        }
+
+        // 4. 차종별 할인율 적용
+        if (car_type == 1) {
+            discount_rate = 50; // 경차 50%
+        }
+        else if (car_type == 2) {
+            discount_rate = 0;  // 일반 0%
+        }
+        else if (car_type == 3) {
+            discount_rate = 30; // 전기차 30%
+        }
+        else {
+            printf("-> 일반 요금 적용\n");
+            discount_rate = 0;  // 그 외 번호는 할인 없음
+        }
+
+        // 최종 요금 계산 (최대 요금 적용 후 할인율 적용)
+        final_fee = base_fee * (100 - discount_rate) / 100;
+
+        // 차량별 요금 출력
+        printf("  요금: %d원 (할인 %d%%)\n", final_fee, discount_rate);
+
+        // 5. 총 정산액 및 최고 요금 차량 추적
+        total_fee += final_fee;
+
+        if (final_fee > max_fee) {
+            max_fee = final_fee;
+            max_car_index = i;
+        }
+    }
+
+    // 최종 결과 출력
+    printf("\n총 정산액: %d원\n", total_fee);
+    printf("최고 요금: %d번 차량 (%d원)\n", max_car_index, max_fee);
+
+    return 0;
+}
