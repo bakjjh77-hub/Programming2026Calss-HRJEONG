@@ -1,0 +1,23 @@
+#include <stdio.h>
+
+int main(void) 
+{
+    int total_seconds;
+    int hours, minutes, seconds;
+
+    printf("총 시간을 초 단위로 입력하세요: ");
+    scanf_s("%d", &total_seconds);
+
+    // 시, 분, 초 계산
+    hours = total_seconds / 3600;            // 3600초로 나눈 몫 = 시간
+    minutes = (total_seconds % 3600) / 60;   // 시간을 제외한 나머지 초를 60으로 나눈 몫 = 분
+    seconds = total_seconds % 60;            // 60으로 나눈 나머지 = 초
+
+    // 결과 출력
+    printf("%d초는 %d시간 %d분 %d초입니다.\n", total_seconds, hours, minutes, seconds);
+    
+    // %02d: 2자리 숫자로 출력하되 한 자리면 앞에 0을 붙임 (예: 01:23:20)
+    printf("디지털 표기: %02d:%02d:%02d\n", hours, minutes, seconds);
+
+    return 0;
+}
