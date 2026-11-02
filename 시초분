@@ -5,7 +5,7 @@ int main(void)
     int total_seconds;
     int hours, minutes, seconds;
 
-    printf("총 시간을 초 단위로 입력하세요: ");
+    printf("Enter total time in seconds: ");
     scanf_s("%d", &total_seconds);
 
     // 시, 분, 초 계산
@@ -14,10 +14,10 @@ int main(void)
     seconds = total_seconds % 60;            // 60으로 나눈 나머지 = 초
 
     // 결과 출력
-    printf("%d초는 %d시간 %d분 %d초입니다.\n", total_seconds, hours, minutes, seconds);
+    printf("%d seconds is %d hour(s), %d minute(s), and %d second(s).\n", total_seconds, hours, minutes, seconds);
     
     // %02d: 2자리 숫자로 출력하되 한 자리면 앞에 0을 붙임 (예: 01:23:20)
-    printf("디지털 표기: %02d:%02d:%02d\n", hours, minutes, seconds);
+    printf("Digital clock: %02d:%02d:%02d\n", hours, minutes, seconds);
 
     return 0;
 }
