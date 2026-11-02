@@ -16,7 +16,7 @@ int main(void)
     // 결과 출력
     printf("%d seconds is %d hour(s), %d minute(s), and %d second(s).\n", total_seconds, hours, minutes, seconds);
     
-    // %02d: 2자리 숫자로 출력하되 한 자리면 앞에 0을 붙임 (예: 01:23:20)
+    // 2자리 숫자로 출력하지만 수가 한 자리면 앞에 0을 붙임 
     printf("Digital clock: %02d:%02d:%02d\n", hours, minutes, seconds);
 
     return 0;
