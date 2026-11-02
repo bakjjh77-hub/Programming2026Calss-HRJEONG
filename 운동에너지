@@ -6,7 +6,8 @@ int main(void)
     double m, v, h, ke, pe, total, step, current_h;
 
     // 프로그램 전체 반복 (0 입력 전까지)
-    while (1) {
+    while (1) 
+        {
         printf("===== Mechanical Energy Calculator =====\n");
         printf("1. Kinetic energy  2. Potential energy  3. Free-fall table  0. Exit\n");
         printf("Select: ");
@@ -18,7 +19,8 @@ int main(void)
         }
 
         // 1. 운동에너지 계산
-        if (select == 1) {
+        if (select == 1) 
+            {
             // 질량 및 속력 입력 (0 이하일 경우 재입력)
             printf("Mass (kg): ");
             scanf_s("%lf", &m);
@@ -38,7 +40,8 @@ int main(void)
             ke = 0.5 * m * v * v;
 
             // 1000J 이상이면 kJ 단위도 함께 출력
-            if (ke >= 1000.0) {
+            if (ke >= 1000.0) 
+            {
                 printf("Energy = %.3lf J (%.3lf kJ)\n\n", ke, ke / 1000.0);
             }
             else {
@@ -46,18 +49,21 @@ int main(void)
             }
         }
         // 2. 위치에너지 계산
-        else if (select == 2) {
+        else if (select == 2) 
+            {
             // 질량 및 높이 입력 (0 이하일 경우 재입력)
             printf("Mass (kg): ");
             scanf_s("%lf", &m);
-            while (m <= 0) {
+            while (m <= 0) 
+            {
                 printf("-> Value must be positive. Enter again: ");
                 scanf_s("%lf", &m);
             }
 
             printf("Height (m): ");
             scanf_s("%lf", &h);
-            while (h <= 0) {
+            while (h <= 0) 
+            {
                 printf("-> Value must be positive. Enter again: ");
                 scanf_s("%lf", &h);
             }
@@ -65,25 +71,30 @@ int main(void)
             // 공식: PE = m * g * h
             pe = m * 9.81 * h;
 
-            if (pe >= 1000.0) {
+            if (pe >= 1000.0) 
+            {
                 printf("Energy = %.3lf J (%.3lf kJ)\n\n", pe, pe / 1000.0);
             }
-            else {
+            else 
+            {
                 printf("Energy = %.3lf J\n\n", pe);
             }
         }
         // 3. 자유낙하 표 출력
-        else if (select == 3) {
+        else if (select == 3) 
+            {
             printf("Mass (kg): ");
             scanf_s("%lf", &m);
-            while (m <= 0) {
+            while (m <= 0) 
+            {
                 printf("-> Value must be positive. Enter again: ");
                 scanf_s("%lf", &m);
             }
 
             printf("Start height (m): ");
             scanf_s("%lf", &h);
-            while (h <= 0) {
+            while (h <= 0) 
+            {
                 printf("-> Value must be positive. Enter again: ");
                 scanf_s("%lf", &h);
             }
@@ -94,11 +105,13 @@ int main(void)
             printf("     h(m)      PE(J)      KE(J)   Total(J)\n");
 
             // 높이 5등분 구간(6개 지점) 반복 출력
-            for (int i = 0; i <= 5; i++) {
+            for (int i = 0; i <= 5; i++) 
+            {
                 current_h = h - (step * i);
 
                 // 부동소수점 오차로 0보다 작아지는 것을 방지
-                if (current_h < 0.0001) {
+                if (current_h < 0.0001) 
+                {
                     current_h = 0.0;
                 }
 
