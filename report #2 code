@@ -1,24 +1,27 @@
 // 첫번째 운명의 숫자 프로그램 실행
 #include <stdio.h>
 
-int main(void) {
+int main(void) 
+{
     int birthdate; // 생년월일을 저장할 변수
     int sum = 0;   // 각 자리 숫자의 합을 저장할 변수
 
     // 1. 생년월일 입력받기
     printf("Enter your 8-digit birthdate (YYYYMMDD): ");
-    scanf_s("%d", &birthdate); // 보안이 강화된 scanf_s 사용
+    scanf_s("%d", &birthdate); //
 
     // [예외처리] 음수나 0이 입력된 경우 방어 로직
-    if (birthdate <= 0) {
+    if (birthdate <= 0) 
+    {
         printf("잘못된 입력입니다. 양수의 8자리 숫자를 입력해주세요.\n");
         return 1; // 비정상 종료
     }
 
-    printf("Calculating...\n");
+    printf("Calculating\n");
 
     // 2. 운명의 숫자 계산 (1자리가 될 때까지 반복)
-    while (birthdate >= 10) { // 10 이상이면 2자리 수 이상이므로 루프 실행
+    while (birthdate >= 10) 
+        { // 10 이상이면 2자리 수 이상이므로 루프 실행
         sum = 0; // 새로운 합산을 위해 sum 초기화
 
         // 각 자리 숫자를 떼어내어 더하는 내부 루프
@@ -64,7 +67,8 @@ int main(void)
     scanf_s("%d", &energy); // 안전한 입력 함수 사용
 
     // [예외처리] 양의 정수가 아닌 값(음수, 0) 방어 로직
-    if (energy <= 0) {
+    if (energy <= 0) 
+    {
         printf("에너지는 양의 정수여야 합니다.\n");
         return 1;
     }
@@ -73,7 +77,8 @@ int main(void)
     printf("Sequence: ");
 
     // 2. 에너지가 1이 될 때까지 시퀀스 반복
-    while (energy != 1) {
+    while (energy != 1) 
+        {
         printf("%d -> ", energy);
 
         // 짝수와 홀수에 따른 엔진 에너지 패턴 변화 로직
@@ -111,7 +116,8 @@ int main(void)
 #define MAGIC_SCROLL 2000
 #define ELIXIR 3000
 
-int main(void) {
+int main(void) 
+   {
     int balance, choice, count = 0, price = 0;
     const char* item_name = ""; // 선택한 아이템 이름을 임시 저장할 문자열 변수
 
@@ -124,7 +130,8 @@ int main(void) {
         return 1;
     }
 
-    while (1) {
+    while (1) 
+        {
         // 메뉴 출력문을 하나로 통합하여 길이 단축
         printf("\nGoblin's Vending Machine\n1. Red Potion (%d G)\n2. Magic Scroll (%d G)\n3. Elixir (%d G)\n0. Exit\nSelect an item: ", RED_POTION, MAGIC_SCROLL, ELIXIR);
         scanf_s("%d", &choice);
@@ -135,7 +142,8 @@ int main(void) {
         }
 
         // if~else 대신 switch문을 사용하여 가격과 아이템 이름을 한 번에 매핑
-        switch (choice) {
+        switch (choice) 
+        {
         case 1: price = RED_POTION; item_name = "Red Potion"; break;
         case 2: price = MAGIC_SCROLL; item_name = "Magic Scroll"; break;
         case 3: price = ELIXIR; item_name = "Elixir"; break;
@@ -143,17 +151,20 @@ int main(void) {
         }
 
         // count를 먼저 1 증가시킨 후 3의 배수인지 판별 (로직 1줄 압축)
-        if (++count % 3 == 0) {
+        if (++count % 3 == 0) 
+        {
             printf("*** GOBLIN'S BLESSING! 50%% DISCOUNT! ***\n");
             price /= 2;
         }
 
         // 출력 로직을 통합하여 item_name 변수로 한 번에 처리
-        if (balance >= price) {
+        if (balance >= price) 
+        {
             balance -= price;
             printf("[Purchased] %s for %d G. Balance: %d G\n", item_name, price, balance);
         }
-        else {
+        else 
+        {
             printf("Not enough balance!\n");
             count--;
         }
